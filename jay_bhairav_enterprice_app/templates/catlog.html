@@ -1,0 +1,142 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<header>
+    <style>
+
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #ff3368;;
+        color: white;
+        }
+    </style>
+
+</header>
+
+<section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="breadcrumb_iner">
+                    <div class="breadcrumb_iner_item">
+                        <h2>Broucher</h2>
+                        <p><a href="{% url 'index' %}">Home </a><span>-</span> Broucher</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-section padding_top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="contact-title" style="text-align: center;">Broucher</h2>
+        </div>
+        <div class="col-lg-12">
+            <table id="customers">
+                <tr>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>File</th>
+                   
+                </tr>
+            {% if broucher %}
+                {% for i in broucher %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{i.Name}}</td>
+                        <td style="text-align: center;"><a href="{{i.File.url}}" target="_blank" class="fa fa-file-pdf-o">Open</a></td>     
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <p>There are no data avilable.</p>
+            {% endif %}
+        </table>
+          <!-- <form name="contact" class="form-contact contact_form" action="{% url 'contact' %}" method="post" >
+            {% csrf_token %}
+            <div class="row">
+             
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <input class="form-control" name="fname" id="name" type="text" onfocus="highlightyellow(this)"
+                    onblur="Fname()" placeholder='Enter your name'>
+                    <p style="color: red;" id="invalidfname"></p>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <input class="form-control" name="femail" id="email" type="email" onfocus="highlightyellow(this)"
+                    onblur="Femail()" placeholder='Enter email address'>
+                    <p style="color: red;" id="invalidfemail"></p>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <input class="form-control" name="fphone_no" id="subject" type="text" onfocus="highlightyellow(this)"
+                    onblur="Fphone_no()" placeholder='Enter your phone no'>
+                    <p style="color: red;" id="invalidfphone_no"></p>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+
+                  <textarea class="form-control w-100" name="fmessage" id="message" cols="30" rows="9"
+                  onfocus="highlightyellow(this)" onblur="Fmessage()"
+                    placeholder='Enter Message'></textarea>
+                    <p style="color: red;" id="invalidfmessage"></p>
+                </div>
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <button type="submit" class="btn_3 button-contactForm" id="btnmanage" onclick="btn()">Send Message</button>
+            </div>
+          </form> -->
+        </div>
+        <!-- <div class="col-lg-4">
+          <div class="media contact-info">
+            <span class="contact-info__icon"><i class="ti-home"></i></span>
+            <div class="media-body">
+              <h3>D-70 Snehplaza.</h3>
+              <p>Chandkheda,Ahemedabad</p>
+            </div>
+          </div>
+          <div class="media contact-info">
+            <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+            <div class="media-body">
+              <h3>8401952564</h3>
+              <p>Mon to sat 9am to 8pm</p>
+            </div>
+          </div>
+          <div class="media contact-info">
+            <span class="contact-info__icon"><i class="ti-email"></i></span>
+            <div class="media-body">
+              <h3>jaybhairaventerprise2312@gmail.com</h3>
+              <p>Send us your query anytime!</p>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </section>
+{% endblock %}
